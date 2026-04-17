@@ -1,7 +1,7 @@
 # 0003 — LangGraph over LangChain for agent orchestration
 
 **Status:** Accepted
-**Date:** 2026-04
+**Date:** 2026-04-16
 
 ## Context
 

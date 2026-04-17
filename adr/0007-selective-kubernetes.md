@@ -1,7 +1,7 @@
 # 0007 — Selective Kubernetes usage
 
 **Status:** Accepted
-**Date:** 2026-04
+**Date:** 2026-04-17
 
 ## Context
 

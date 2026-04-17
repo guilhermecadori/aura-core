@@ -1,7 +1,7 @@
 # 0002 — Single-vehicle scope for v1
 
 **Status:** Accepted
-**Date:** 2026-04
+**Date:** 2026-04-16
 
 ## Context
 

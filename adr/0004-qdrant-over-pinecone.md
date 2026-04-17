@@ -1,7 +1,7 @@
 # 0004 — Qdrant over Pinecone for vector storage
 
 **Status:** Accepted
-**Date:** 2026-04
+**Date:** 2026-04-16
 
 ## Context
 

@@ -1,7 +1,7 @@
 # 0006 — Redpanda over Apache Kafka for event streaming
 
 **Status:** Accepted
-**Date:** 2026-04
+**Date:** 2026-04-17
 
 ## Context
 

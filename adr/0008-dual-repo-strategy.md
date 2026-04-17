@@ -1,7 +1,7 @@
 # 0008 — Dual public/private repository strategy
 
 **Status:** Accepted
-**Date:** 2026-04
+**Date:** 2026-04-17
 
 ## Context
 
