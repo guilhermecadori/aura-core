@@ -1,7 +1,8 @@
 # 0005 — vLLM over Triton for LLM serving
 
 **Status:** Accepted
-**Date:** 2026-04-17
+
+**Date:** 2026-04-16
 
 ## Context
 
