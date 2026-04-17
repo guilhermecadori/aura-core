@@ -1,6 +1,7 @@
 # 0001 — Cloud-native primary with edge fallback
 
 **Status:** Accepted
+
 **Date:** 2026-04-16
 
 ## Context
