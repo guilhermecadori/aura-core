@@ -49,7 +49,7 @@ Observability: OpenTelemetry → Grafana Cloud · Langfuse · MLflow
 Infra: Terraform · Docker · Helm · AWS EKS (ingest pipeline)
 ```
 
-Full architecture document and ADRs in [`/docs`](./docs).
+Full architecture document in [`aura-architecture.md`](./aura-architecture.md) and ADRs in [`adr/`](./adr).
 
 ---
 
@@ -69,7 +69,7 @@ Full architecture document and ADRs in [`/docs`](./docs).
 | Observability | OpenTelemetry · Grafana Cloud · Langfuse · MLflow |
 | Infra | Docker · Terraform · AWS EKS · Helm · KEDA |
 
-Notable exclusions with rationale in [`docs/adr/`](./docs/adr): LangChain, Pinecone, Triton.
+Notable exclusions with rationale in [`adr/`](./adr): LangChain, Pinecone, Triton.
 
 ---
 
