@@ -69,7 +69,7 @@ Full architecture document in [`aura-architecture.md`](./aura-architecture.md) a
 | Observability | OpenTelemetry · Grafana Cloud · Langfuse · MLflow |
 | Infra | Docker · Terraform · AWS EKS · Helm · KEDA |
 
-Notable exclusions with rationale in [`adr/`](./adr): LangChain, Pinecone, Triton.
+Notable exclusions with rationale in [`adr/`](./adr)
 
 ---
 
