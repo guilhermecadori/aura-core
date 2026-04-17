@@ -34,7 +34,7 @@ The public repo depends on the private repo's data through a clean interface (co
 
 ### Positive
 
-- Public repo is a clean portfolio artifact that any reviewer can read, clone, and run against mocks
+- Public repo is a clean artifact that anyone can read, clone, and run against mocks
 - AGPL-3.0 provides reciprocity: commercial forks must open-source their modifications under the same terms
 - Private repo protects the domain-specific work that represents the actual competitive advantage
 - Clear architectural boundary between "the system" (public) and "the data that makes it good" (private)
@@ -44,17 +44,7 @@ The public repo depends on the private repo's data through a clean interface (co
 
 - Two repos to maintain, with a clean interface between them that must be actively preserved
 - Some context-switching cost when a change spans both repos
-- AGPL scares some corporate users; the public repo may see less enterprise adoption than a permissive license would
-- Risk that the public repo, running only against mocks, feels hollow to reviewers who don't understand the split
 
 ### Neutral
 
-- The public repo's README must clearly explain the split so reviewers understand what they're seeing
 - Eval sets may need to split: a public subset using mocks, a private authoritative set using real corpus
-
-## Revisit When
-
-- Commercial interest in the project justifies formal dual licensing
-- The private repo's content is published (e.g., as an academic dataset) making the split obsolete
-- A specific contributor relationship requires access to both repos and the split becomes friction
-- AGPL becomes an active barrier to adoption that matters for the project's goals
