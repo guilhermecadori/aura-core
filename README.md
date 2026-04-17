@@ -1,6 +1,6 @@
-# AURA
+# _AURA - Automotive Understanding & Reasoning Agent_
 
-***AURA - Automotive Understanding & Reasoning Agent*** — an AI Agent for vehicle performance and diagnostics.
+An AI Agent for vehicle performance and diagnostics.
 
 Connect your vehicle, ask a question in natural language, get a grounded answer backed by live telemetry and a curated technical corpus. Cloud-native with offline edge fallback.
 
