@@ -1,0 +1,70 @@
+name: python-quality
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "**/*.py"
+      - "pyproject.toml"
+      - "requirements*.txt"
+      - ".github/workflows/python-quality.yml"
+  pull_request:
+    paths:
+      - "**/*.py"
+      - "pyproject.toml"
+      - "requirements*.txt"
+      - ".github/workflows/python-quality.yml"
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install quality tools
+        run: pip install ruff mypy pytest pytest-cov
+
+      - name: Install project dependencies
+        run: |
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          fi
+          if [ -f pyproject.toml ] && grep -q '\[project.optional-dependencies\]' pyproject.toml; then
+            pip install -e ".[dev]" 2>/dev/null || pip install -e . 2>/dev/null || true
+          fi
+
+      - name: Ruff lint
+        run: |
+          if find . -name '*.py' -not -path './.git/*' -print -quit 2>/dev/null | grep -q .; then
+            ruff check .
+          else
+            echo "No Python files found, skipping ruff lint"
+          fi
+
+      - name: Ruff format check
+        run: |
+          if find . -name '*.py' -not -path './.git/*' -print -quit 2>/dev/null | grep -q .; then
+            ruff format --check .
+          else
+            echo "No Python files found, skipping ruff format"
+          fi
+
+      - name: Mypy type check
+        run: |
+          if find src -name '*.py' -not -name '__init__.py' -print -quit 2>/dev/null | grep -q .; then
+            mypy src/
+          else
+            echo "No src/ Python files to type-check, skipping mypy"
+          fi
+
+      - name: Pytest with coverage
+        run: |
+          if find tests -name 'test_*.py' -print -quit 2>/dev/null | grep -q .; then
+            pytest
+          else
+            echo "No test files found, skipping pytest"
+          fi
