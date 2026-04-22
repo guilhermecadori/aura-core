@@ -10,9 +10,9 @@ The primary LLM serving path uses a self-hosted open-weights model. The goals:
 
 - **High throughput** under concurrent load — continuous batching is the key technique
 - **Low time-to-first-token** (TTFT) for responsive streaming
-- **GPU-efficient** — portfolio budget, scale-to-zero when idle
+- **GPU-efficient** — small-project budget, scale-to-zero when idle
 - **OpenAI-compatible API** — simplifies client code and allows trivial swap to hosted APIs for the fallback path
-- **Portfolio legibility** — the choice should be defensible and explainable
+- **Defensible choice** — the decision should hold up to technical scrutiny with a clear rationale
 
 ## Decision
 
@@ -52,6 +52,6 @@ Use **vLLM** as the inference server, deployed on **Modal** (GPU host with scale
 ## Revisit When
 
 - SGLang or a successor demonstrates materially better throughput on the target workload
-- A role specifically requires Triton experience and the gap matters
+- A workload requirement emerges that favors Triton's heterogeneous-model-serving capability
 - Modal's economics shift such that dedicated GPU hosting becomes competitive
 - A non-NVIDIA accelerator becomes attractive for cost reasons

@@ -14,7 +14,7 @@ Three categories of framework exist:
 2. **Graph-based state machines** (LangGraph, Haystack, Burr) — explicit nodes, edges, and state
 3. **Direct implementation** — write the loop by hand against an OpenAI-compatible client
 
-Portfolio considerations matter here: the agent layer is inspected closely by technical reviewers. Control, observability, and legibility are higher-value than convenience.
+The agent layer is load-bearing and is the most closely inspected part of the system. Control, observability, and legibility are higher-value than convenience.
 
 ## Decision
 
@@ -35,7 +35,7 @@ Use **LangGraph** for the agent orchestration layer. Direct vLLM / Anthropic API
 - Agent state is explicit and inspectable — the ReAct trace is a first-class artifact, not reconstructed from logs
 - Checkpointing comes for free, enabling conversation resume and human-in-the-loop flows later
 - Tool calls are routed via explicit edges, easy to reason about and trace
-- Interview answer "I evaluated LangChain and chose LangGraph because..." signals thoughtfulness
+- The decision itself is documented and defensible, not a default pick
 
 ### Negative
 

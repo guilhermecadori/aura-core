@@ -6,9 +6,9 @@
 
 ## Context
 
-Kubernetes is a dominant keyword in DevOps, platform, and senior engineering job posts. A portfolio project without any Kubernetes experience forfeits a meaningful signal. However, *everything* on Kubernetes is a common anti-pattern — it introduces substantial operational complexity that's only justified for workloads that genuinely benefit.
+Kubernetes is the dominant container orchestrator for production-grade stateful workloads. A system with no Kubernetes surface forfeits the opportunity to exercise that operational discipline. However, *everything* on Kubernetes is a common anti-pattern — it introduces substantial operational complexity that's only justified for workloads that genuinely benefit.
 
-Most of AURA's services (stateless FastAPI, Next.js frontend, batch orchestrator) run perfectly well on simpler platforms (Railway, Fly.io, Vercel, Modal). Forcing them onto Kubernetes would be resume-driven architecture and would produce worse operational outcomes than the simpler platforms provide.
+Most of AURA's services (stateless FastAPI, Next.js frontend, batch orchestrator) run perfectly well on simpler platforms (Railway, Fly.io, Vercel, Modal). Forcing them onto Kubernetes would produce worse operational outcomes than the simpler platforms provide, with no proportional benefit.
 
 Conversely, **the telemetry ingestion pipeline is a genuinely Kubernetes-shaped workload**: stateful services (Redpanda), consumer groups requiring careful pod lifecycle management, horizontal scaling driven by a queue depth metric (Kafka consumer lag), and multi-pod coordination.
 
@@ -24,11 +24,11 @@ This gives one credible, non-trivial Kubernetes deployment while keeping the res
 
 ## Alternatives Considered
 
-- **Everything on Kubernetes** — rejected: operational complexity overwhelms a single-developer portfolio project; services like Vercel, Modal, and Railway are objectively better tools for their respective workloads; demonstrating judgment about *when* to use k8s is a stronger signal than using it everywhere
-- **No Kubernetes** — rejected: forfeits a major job-market signal, and the ingestion pipeline is genuinely the right shape for k8s
-- **k3s or k0s instead of EKS** — rejected: lighter to run but weaker market signal; EKS demonstrates managed-k8s experience that more closely mirrors enterprise environments
+- **Everything on Kubernetes** — rejected: operational complexity overwhelms a single-developer project; services like Vercel, Modal, and Railway are objectively better tools for their respective workloads; choosing k8s *selectively* is a stronger engineering stance than using it everywhere
+- **No Kubernetes** — rejected: the ingestion pipeline is genuinely the right shape for k8s, and running it on simpler platforms would fight the platform's design
+- **k3s or k0s instead of EKS** — rejected: lighter to run, but managed EKS mirrors the operational model most commonly encountered in enterprise environments
 - **GKE instead of EKS** — rejected: AWS has stronger presence in the target market (Brazil); GKE coverage is handled separately via Cloud Run in ADR-adjacent decisions
-- **ECS/Fargate** — rejected for this role: AWS-native container orchestration but weaker keyword signal than Kubernetes; Fargate *does* appear as the execution target for non-ingestion AWS workloads (e.g., one-off compute for eval runners)
+- **ECS/Fargate** — rejected for ingestion: AWS-native container orchestration but doesn't exercise Kubernetes primitives the pipeline benefits from; Fargate *does* appear as the execution target for non-ingestion AWS workloads (e.g., one-off compute for eval runners)
 
 ## Consequences
 
@@ -36,7 +36,7 @@ This gives one credible, non-trivial Kubernetes deployment while keeping the res
 
 - One high-quality Kubernetes deployment is a stronger artifact than many low-quality ones
 - Rest of the system remains operationally manageable by a single developer
-- Interview answer "I used Kubernetes for X because it's the right shape; I used simpler tools for Y because they were" signals seniority
+- The rationale "Kubernetes where it fits, simpler tools where they fit" is documented and defensible
 - Terraform + Helm + KEDA stack is industry-standard and portable
 
 ### Negative
@@ -53,6 +53,6 @@ This gives one credible, non-trivial Kubernetes deployment while keeping the res
 ## Revisit When
 
 - Cost optimization forces consolidation to a single platform
-- A specific role requires end-to-end k8s experience across all services
+- A workload requirement emerges that benefits from running all services on the same orchestrator
 - Managed services change their pricing or capabilities in a way that shifts the tradeoff
 - Operational burden of running two platforms exceeds the benefit of using the right tool for each

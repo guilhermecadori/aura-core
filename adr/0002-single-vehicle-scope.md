@@ -27,17 +27,17 @@ v1 supports **only the 2021+ VW Amarok V6 Extreme**. The corpus, evaluation set,
 - Corpus can be curated to expert depth; grounding and evals are credible
 - Demo video features real vehicle with real faults; emotionally and technically stronger than any generic demo
 - Scope discipline keeps Phase 1 (RAG) tractable and high-quality
-- "I built the best possible AI copilot for this one vehicle" is a stronger portfolio story than "I built a generic tool"
+- "The best possible AI copilot for this one vehicle" is a stronger product story than "a generic tool"
 
 ### Negative
 
-- Limits the addressable user base for the live product — most reviewers who try it do so via demo mode rather than with their own vehicle
-- Reviewers without domain knowledge may undervalue the depth of expertise
+- Limits the addressable user base for the live product — most visitors try it via demo mode rather than with their own vehicle
+- Visitors without domain knowledge may undervalue the depth of expertise
 - If the project is ever commercialized, multi-vehicle expansion is non-trivial work
 
 ### Neutral
 
-- Demo mode (recorded drives from the developer's vehicle) is mandatory infrastructure for reviewer access
+- Demo mode (recorded drives from the developer's vehicle) is mandatory infrastructure so visitors without an Amarok can exercise the product
 - Architecture must still be designed multi-tenant and multi-vehicle-ready even if only one vehicle is populated
 
 ## Revisit When
