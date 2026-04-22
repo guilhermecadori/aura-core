@@ -13,7 +13,7 @@ The telemetry ingestion pipeline needs an event streaming backbone. Vehicles str
 - Backpressure handling when consumers lag
 - Deployability on both Railway (dev) and Kubernetes (prod demo)
 
-Portfolio consideration: **"Kafka" is the dominant keyword in data engineering job posts**. The system must credibly claim Kafka experience.
+Kafka is the de-facto industry standard for event streaming in data engineering. The system speaks the Kafka protocol so existing tooling, client libraries, and operational patterns apply directly.
 
 ## Decision
 
@@ -21,12 +21,12 @@ Use **Redpanda** — a Kafka-protocol-compatible streaming platform written in C
 
 ## Alternatives Considered
 
-- **Apache Kafka** — rejected: operational overhead is substantial. ZooKeeper or KRaft consensus to manage, JVM tuning, broker tuning, higher resource footprint. For a portfolio project where one developer operates everything, Redpanda delivers the same API with dramatically less operational surface. The resume legitimately reads "Kafka (Redpanda)"; this is standard industry language.
-- **AWS MSK / Confluent Cloud** — rejected: expensive at portfolio scale, less control, less visible to reviewers (managed service means less interesting infrastructure to show)
-- **NATS JetStream** — rejected: excellent technology but the keyword signal is weaker; the industry standard for "streaming events" in job descriptions is Kafka
-- **RabbitMQ** — rejected: different model (message queue vs log), doesn't fit the append-only telemetry stream pattern, weaker hiring signal for data/ML roles
-- **Kinesis** — rejected: AWS-specific, costs accumulate at portfolio scale, smaller hiring signal than Kafka broadly
-- **No streaming backbone** (direct WebSocket → DB) — rejected: forfeits the streaming architecture story; simple but undersells the engineering
+- **Apache Kafka** — rejected: operational overhead is substantial. ZooKeeper or KRaft consensus to manage, JVM tuning, broker tuning, higher resource footprint. For a single-developer project where one person operates everything, Redpanda delivers the same API with dramatically less operational surface. "Kafka (Redpanda)" is standard industry phrasing.
+- **AWS MSK / Confluent Cloud** — rejected: expensive at project scale, less control, and the managed-service surface is less instructive to work with directly
+- **NATS JetStream** — rejected: excellent technology but outside the dominant Kafka-protocol ecosystem; less reusable knowledge for contributors
+- **RabbitMQ** — rejected: different model (message queue vs log), doesn't fit the append-only telemetry stream pattern
+- **Kinesis** — rejected: AWS-specific, costs accumulate at project scale, narrower ecosystem than Kafka broadly
+- **No streaming backbone** (direct WebSocket → DB) — rejected: loses the streaming-architecture capability the system needs for archive paths, anomaly detection, and multi-consumer fan-out
 
 ## Consequences
 
@@ -42,7 +42,7 @@ Use **Redpanda** — a Kafka-protocol-compatible streaming platform written in C
 
 - Smaller community than Apache Kafka proper
 - Some Kafka ecosystem tools (e.g., specific Connect plugins) may have compatibility caveats at edges
-- Resume phrasing requires clarifying "Kafka (Redpanda)" for precision
+- External descriptions need to clarify "Kafka (Redpanda)" for precision
 
 ### Neutral
 
@@ -53,4 +53,4 @@ Use **Redpanda** — a Kafka-protocol-compatible streaming platform written in C
 
 - A Kafka-specific ecosystem tool is needed that Redpanda doesn't support
 - Scale exceeds single-broker Redpanda tier in a way where clustered Kafka is cheaper
-- A role specifically values JVM Kafka operational experience
+- A workload requirement specifically benefits from JVM-based Kafka broker behaviour

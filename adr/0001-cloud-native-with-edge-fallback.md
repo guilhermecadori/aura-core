@@ -6,11 +6,11 @@
 
 ## Context
 
-AURA's original framing was edge-first: a resource-constrained AI copilot running on a Raspberry Pi inside a single vehicle. This framing came from targeting a specific company (FuelTech) whose product line and job descriptions emphasized embedded and edge deployment scenarios.
+AURA's original framing was edge-first: a resource-constrained AI copilot running on a Raspberry Pi inside a single vehicle, targeting embedded and edge deployment scenarios for programmable-ECU products.
 
-Reassessing the target market, the dominant demand in AI engineering roles is for **scale-oriented systems**: multi-tenant services, LLM serving at throughput, RAG over large corpora, observability, cost-aware inference. Edge AI is a legitimate specialization but a narrow one.
+Reassessing the problem space, the broader AI engineering landscape is dominated by **scale-oriented systems**: multi-tenant services, LLM serving at throughput, RAG over large corpora, observability, cost-aware inference. Edge AI is a legitimate specialization but a narrow one, and an edge-only architecture leaves most of these disciplines unexercised.
 
-Meanwhile, the original edge framing created product-design awkwardness: a single-vehicle, single-user device has unclear distribution, update, and monetization paths.
+The original edge framing also created product-design awkwardness: a single-vehicle, single-user device has unclear distribution, update, and monetization paths.
 
 ## Decision
 
@@ -18,16 +18,16 @@ AURA is architected as a **cloud-native multi-tenant service** with an **offline
 
 ## Alternatives Considered
 
-- **Edge-only** (original plan) — rejected: misaligned with target job market, awkward product story, harder to demo to remote reviewers
-- **Cloud-only** — rejected: loses the in-vehicle hardware demo which is emotionally differentiating, forfeits the "works offline in the tunnel" product benefit, discards existing Pi hardware investment
+- **Edge-only** (original plan) — rejected: narrow technical scope, awkward product story, harder to demo without physical hardware
+- **Cloud-only** — rejected: loses the in-vehicle hardware demo, forfeits the "works offline in the tunnel" product benefit, discards existing Pi hardware investment
 - **Two separate products (cloud app + edge device)** — rejected: doubles the maintenance surface, splits the brand and corpus, makes neither product strong
 
 ## Consequences
 
 ### Positive
 
-- Unlocks the scale-engineering skill demonstrations that drive most AI engineering job demand
-- Produces a live public URL that any reviewer can try without hardware
+- Exercises the scale-engineering disciplines (multi-tenant serving, streaming, observability, cost-aware inference) that an edge-only architecture cannot
+- Produces a live public URL that any visitor can try without hardware
 - Keeps the in-vehicle hardware video as a differentiating secondary artifact
 - The "pull the cable, keeps working" moment is a stronger demo *because* there's a sophisticated cloud system it falls back from
 

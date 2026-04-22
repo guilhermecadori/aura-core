@@ -10,9 +10,9 @@ The RAG pipeline requires a vector database for storing corpus embeddings and pe
 
 - **Hybrid retrieval**: must support BM25 (or sparse vector) alongside dense retrieval, because exact-match queries on part numbers and DTC codes fail on pure dense retrieval
 - **Metadata filtering**: must filter by document type, vehicle subsystem, source — filter predicates are used in nearly every query
-- **Cost-aware**: hobby/portfolio budget, scale-to-low-cost when idle
+- **Cost-aware**: small-project budget, scale-to-low-cost when idle
 - **Self-hostable**: eventual control over infrastructure, no single-vendor lock-in
-- **Production credibility**: the choice itself is a portfolio signal
+- **Production-grade**: the system must hold up beyond a toy demo
 
 ## Decision
 
@@ -24,7 +24,7 @@ Use **Qdrant**, starting on Qdrant Cloud's free tier (1GB) and migrating to self
 - **Weaviate** — rejected: heavier operational footprint, module system adds complexity, filtering syntax less ergonomic
 - **Milvus** — rejected: operational complexity is high (multi-component deployment), overkill for v1 corpus size, stronger fit for billion-scale vectors which AURA doesn't need
 - **pgvector** — rejected for the primary RAG path: performance walls at serious scale, hybrid search requires extensions and manual work, would preclude demonstrating "chose the right specialized tool"; *may still be used* for secondary lightweight vector needs (e.g., user conversation semantic search)
-- **Chroma** — rejected: excellent developer experience but not positioned as a production-grade system, portfolio optics matter
+- **Chroma** — rejected: excellent developer experience but not positioned as a production-grade system
 - **LanceDB** — rejected: promising and embedded-friendly but would pair better with an edge-first architecture (see ADR 0001); for cloud-first, Qdrant is better matched
 
 ## Consequences
@@ -39,7 +39,7 @@ Use **Qdrant**, starting on Qdrant Cloud's free tier (1GB) and migrating to self
 
 ### Negative
 
-- Less name recognition in job posts than Pinecone (mitigated by documenting the evaluation in this ADR)
+- Less industry name recognition than Pinecone (mitigated by documenting the evaluation in this ADR)
 - Qdrant Cloud's free tier has usage limits that could force an early migration
 - Operational experience on self-hosted Qdrant is net-new work
 
@@ -51,5 +51,4 @@ Use **Qdrant**, starting on Qdrant Cloud's free tier (1GB) and migrating to self
 ## Revisit When
 
 - Corpus exceeds Qdrant Cloud free tier and self-hosted operations become burdensome
-- A specific role targets Pinecone experience and the gap matters
 - Qdrant's development stalls or hybrid search regresses

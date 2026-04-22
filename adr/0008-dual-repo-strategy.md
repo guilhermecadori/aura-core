@@ -8,10 +8,10 @@
 
 AURA has two conflicting goals:
 
-1. **Build in public** — a visible open-source repository is a portfolio asset; reviewers read the code, ADRs, and commit history to evaluate the developer
+1. **Build in public** — a visible open-source repository lets engineers read the code, ADRs, and commit history, learn from the architecture, and contribute
 2. **Protect commercially valuable IP** — the curated Amarok corpus, tuned prompts, fine-tuning datasets, and real telemetry recordings represent months of domain work and would be trivial to fork wholesale
 
-A fully open repository exposes the moat. A fully private repository forfeits the portfolio value. A permissive license (MIT, Apache) on everything invites bad-faith commercial forks. A copyleft license alone doesn't prevent clones by entities that don't care about license obligations.
+A fully open repository exposes the moat. A fully private repository forfeits the value of being publicly readable. A permissive license (MIT, Apache) on everything invites bad-faith commercial forks. A copyleft license alone doesn't prevent clones by entities that don't care about license obligations.
 
 ## Decision
 
@@ -26,7 +26,7 @@ The public repo depends on the private repo's data through a clean interface (co
 
 - **Single fully public repo, permissive license (MIT)** — rejected: invites wholesale commercial cloning with no protection
 - **Single fully public repo, AGPL** — rejected: AGPL deters good-faith commercial forks but doesn't stop bad-faith ones; also exposes the curated corpus and prompts which are the actual moat
-- **Single fully private repo** — rejected: forfeits the portfolio signal of public code; recruiters can't read it
+- **Single fully private repo** — rejected: forfeits the value of public code; engineers and contributors can't read it
 - **Public repo with private Git submodule** — rejected: operationally clunky, depends on access control propagating correctly, exposes metadata about the private repo's existence and shape
 - **Public repo with a paid/gated "pro" tier (dual licensing)** — rejected: implies commercial positioning the project doesn't yet have; over-complicates the story
 

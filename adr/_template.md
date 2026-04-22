@@ -7,7 +7,7 @@
 
 What situation forced this decision? What constraints were in play? What would have been true if we didn't decide?
 
-Keep to 2–4 short paragraphs. Link to external context (job posts, benchmarks, docs) rather than duplicating.
+Keep to 2–4 short paragraphs. Link to external context (benchmarks, RFCs, vendor docs) rather than duplicating.
 
 ## Decision
 
