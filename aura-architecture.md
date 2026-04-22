@@ -16,7 +16,7 @@ The architecture is designed to scale to many vehicles later, but the v1 product
 
 ### 1.2 Why This Project
 
-This is a portfolio project targeting AI Engineering, ML Platform, and Applied AI roles. It was originally inspired by FuelTech's job descriptions but is no longer narrowly aimed at FuelTech specifically. The compensation reality of the broader AI engineering market — where scale-oriented work dominates demand — drove a deliberate pivot from edge-only to cloud-native-with-edge-fallback.
+AURA is designed to exercise the full breadth of modern AI engineering end-to-end, with a real product surface at the end rather than a notebook demo. An earlier iteration was edge-only; the system pivoted to cloud-native-with-edge-fallback because scale-oriented workloads better exercise the engineering disciplines the project wants to cover.
 
 The project is designed to demonstrate, in priority order:
 
@@ -28,7 +28,7 @@ The project is designed to demonstrate, in priority order:
 
 ### 1.3 Why It Has To Be a Real Product
 
-A live URL beats a benchmark report. A video of a real vehicle beats a slide deck. The portfolio strategy is built around two artifacts a reviewer can engage with directly:
+A live URL beats a benchmark report. A video of a real vehicle beats a slide deck. The project delivery strategy is built around two artifacts a visitor can engage with directly:
 
 - **A live web product** at a public URL where any visitor can try AURA in demo mode within seconds
 - **A video** demonstrating in-vehicle voice interaction, ReAct reasoning, offline fallback, and bilingual operation
@@ -59,7 +59,7 @@ The choice is deliberate: the EA897 is genuinely complex (variable geometry turb
 
 **`aura-core`** — public, AGPL-3.0. Generic architecture, mock data, synthetic corpus samples, all infrastructure code, all eval harnesses, the full open-source product surface. This is what reviewers see.
 
-**`aura-pro`** — private. Curated Amarok corpus, tuned prompts, real telemetry recordings, fine-tuning datasets, any commercially valuable IP. AGPL on `aura-core` prevents bad-faith forks while allowing recruiters and engineers to read and learn from the architecture.
+**`aura-pro`** — private. Curated Amarok corpus, tuned prompts, real telemetry recordings, fine-tuning datasets, any commercially valuable IP. AGPL on `aura-core` prevents bad-faith forks while allowing engineers and contributors to read and learn from the architecture.
 
 ### 1.7 Language Strategy
 
@@ -214,7 +214,7 @@ Secondary cloud: GCP Cloud Run (aura-bridge simulator)
 
 | Choice | Rationale |
 |---|---|
-| **Next.js 15 + TypeScript** | Largest ecosystem, best AI streaming support, strong hiring signal |
+| **Next.js 15 + TypeScript** | Largest ecosystem, best AI streaming support |
 | **Tailwind + shadcn/ui** | Fast, professional, doesn't look AI-generated |
 | **Vercel AI SDK** | Industry standard for streaming chat, tool calls, structured outputs |
 | **TanStack Query + Zustand** | Server state + client state without Redux overhead |
@@ -255,7 +255,7 @@ Secondary cloud: GCP Cloud Run (aura-bridge simulator)
 | Choice | Rationale |
 |---|---|
 | **LangGraph** | Explicit state, explicit edges; correct abstraction for ReAct loop with tools |
-| **NOT LangChain** | Leaky abstractions; senior reviewers see avoidance as a positive signal |
+| **NOT LangChain** | Leaky abstractions; LangGraph + direct LLM clients give better control and observability |
 | **Tools**: `retrieve_corpus`, `get_telemetry_snapshot`, `explain_dtc`, `search_history`, `compute_metric` | Minimum viable tool set; expand only when prompted by real failures |
 
 #### 3.3.6 Data Layer
@@ -280,7 +280,7 @@ Secondary cloud: GCP Cloud Run (aura-bridge simulator)
 
 | Choice | Rationale |
 |---|---|
-| **Apache Airflow** | DAGs for corpus refresh, eval suite, analytics; strongest job-market keyword |
+| **Apache Airflow** | DAGs for corpus refresh, eval suite, analytics; industry standard for workflow orchestration |
 | **Databricks Community Edition** | Free real Databricks; PySpark notebooks for analytics and training data |
 | **DuckDB** | Ad-hoc analytics; honest comparison: "Spark for fleet scale, DuckDB for this scale" |
 | **MLflow** | Experiment tracking for prompt/retrieval/model variants; model registry |
@@ -292,7 +292,7 @@ Secondary cloud: GCP Cloud Run (aura-bridge simulator)
 | **AWS** (primary cloud) | Dominant in Brazilian market; S3 + EKS + IAM with Terraform |
 | **AWS EKS** | Real Kubernetes for Redpanda + consumers (one credible k8s deployment) |
 | **GCP Cloud Run** | Single deployed service for legitimate multi-cloud claim |
-| **Terraform** | IaC for all AWS resources; major hiring signal |
+| **Terraform** | IaC for all AWS resources |
 | **Docker** | Every service containerized; multi-stage builds; Compose for local dev |
 | **Helm** | Charts for the EKS deployment |
 | **KEDA** | HPA driven by Kafka consumer lag |
@@ -410,7 +410,7 @@ Each phase has a **scope**, **stop criterion** (the minimum that makes the phase
 
 > **🎯 PRIMARY STOP POINT — END OF PHASE 5**
 >
-> After Phase 5, AURA covers the high-priority skills (RAG, LLM serving, multi-tenancy, streaming, observability, IaC, k8s, cost engineering) and has a live product reviewers can use. **If the job search accelerates, stop here.** Phases 6–9 are extensions, not baseline.
+> After Phase 5, AURA covers the high-priority disciplines (RAG, LLM serving, multi-tenancy, streaming, observability, IaC, k8s, cost engineering) and has a live product visitors can use. Phases 6–9 are extensions, not baseline.
 
 ---
 
@@ -448,7 +448,7 @@ Each phase has a **scope**, **stop criterion** (the minimum that makes the phase
 
 **Scope.** In-vehicle demo video. Split-screen with ReAct trace HUD. Pull-the-cable offline moment. Bilingual interaction. Fault injection (unplug a sensor, simulate a boost leak, trigger a DPF event). Tight editing.
 
-**Stop criterion.** Video published; linked from repo, LinkedIn, resume.
+**Stop criterion.** Video published; linked from the repo.
 
 ---
 
@@ -466,7 +466,7 @@ Each phase has a **scope**, **stop criterion** (the minimum that makes the phase
 | Phase | Weeks | Months | Cumulative (months) | Status After Phase |
 |---|---|---|---|---|
 | **0. Foundation Knowledge** | 12 | 3.0 | 3.0 | Ready to build |
-| **1. RAG Foundation** | 8 | 2.0 | 5.0 | Narrow RAG portfolio possible |
+| **1. RAG Foundation** | 8 | 2.0 | 5.0 | Narrow RAG product demo possible |
 | **2. LLM Serving + ReAct** | 8 | 2.0 | 7.0 | Agent + serving story complete |
 | **3. Product Surface** | 10 | 2.5 | 9.5 | Live product URL exists |
 | **4. Streaming Data Pipeline** | 6 | 1.5 | 11.0 | Streaming/data story complete |
@@ -499,34 +499,33 @@ P9                                                                ▓▓▓
 Every phase boundary is a decision gate. At each gate, ask:
 
 1. **Has this phase met its stop criterion?** If no, complete it before moving on.
-2. **Has the job market situation changed?** Active interview pipeline = consider stopping at the next natural break.
-3. **Is the next phase still aligned with the goal?** Skills demand shifts; revisit priorities.
-4. **Is anything in the architecture obviously wrong?** Sunk cost shouldn't preserve bad decisions.
+2. **Is the next phase still aligned with the project goal?** Technology and priorities shift; revisit them.
+3. **Is anything in the architecture obviously wrong?** Sunk cost shouldn't preserve bad decisions.
 
-Hard gate: **end of Phase 5 (~Month 13)**. This is the explicit "stop or continue" decision point. The portfolio is strong here; everything beyond is upside.
+Hard gate: **end of Phase 5 (~Month 13)**. This is the explicit "stop or continue" decision point. The project is credible here; everything beyond is extension work.
 
 ### 5.5 Realistic Caveats
 
 - **The 18-month estimate assumes nothing is learned that requires major rework.** It will. Add 10–20% mental buffer.
 - **Phase 0 (foundation) is the most uncertain.** Three months is the planned ceiling; if learning goes faster, Phase 1 can start earlier and the whole timeline compresses. If it goes slower, the rest of the plan suffers — be honest about readiness rather than rushing into Phase 1.
 - **Phases 1 and 2 compound risk.** RAG quality and LLM serving quality together determine whether the rest of the project produces good demos. If either is shaky, fix before continuing.
-- **Phase 5 is the "production engineering" phase.** It's the least intrinsically interesting and the most differentiating in interviews. Don't shortcut it.
+- **Phase 5 is the "production engineering" phase.** It's the least intrinsically interesting and where the architecture proves out under real load. Don't shortcut it.
 
-### 5.6 Public Commitment Schedule
+### 5.6 Public Milestone Schedule
 
-To create accountability and build a public following alongside the project:
+Public-facing milestones tied to each phase:
 
-- **Month 3** (end of Phase 0): blog post or LinkedIn writeup — *"Why I'm building AURA"* (concept, target market, architecture overview)
+- **Month 3** (end of Phase 0): writeup — *"Why AURA"* (concept, target vehicle, architecture overview)
 - **Month 5** (end of Phase 1): demo video of RAG service answering Amarok questions
-- **Month 7** (end of Phase 2): blog post — *"Building a ReAct agent without LangChain"* with code excerpts
+- **Month 7** (end of Phase 2): writeup — *"Building a ReAct agent without LangChain"* with code excerpts
 - **Month 9.5** (end of Phase 3): live URL goes public, announcement post
-- **Month 11** (end of Phase 4): blog post on the streaming architecture
-- **Month 13** (end of Phase 5): benchmark report published, public Grafana dashboard link, **active job search begins if not earlier**
+- **Month 11** (end of Phase 4): writeup on the streaming architecture
+- **Month 13** (end of Phase 5): benchmark report published, public Grafana dashboard link
 - **Month 14+**: continued posts as Phases 6–9 ship
 
 ---
 
-## 6. What Recruiters and Hiring Teams Will See
+## 6. Public Deliverables
 
 By end of Phase 5:
 
@@ -542,7 +541,7 @@ By end of Phase 9:
 7. **Demo video** — 4–6 minutes, in-vehicle, voice, ReAct trace HUD, offline moment, bilingual
 8. **Edge artifact** — Pi-based runtime, documented build instructions
 
-The recruiter experience: read the resume bullet, click the URL, try the product, watch the video, browse the repo. Each step deepens conviction. No PDF gates, no "request a demo," no walls.
+The visitor flow: click the URL, try the product, watch the video, browse the repo. Each step deepens understanding. No PDF gates, no "request a demo," no walls.
 
 ---
 
