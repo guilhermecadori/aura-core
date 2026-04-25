@@ -1,0 +1,61 @@
+[project]
+name = "aura-core"
+version = "0.0.0"
+description = "AURA — Automotive Understanding & Reasoning Agent (core)"
+requires-python = ">=3.12"
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-exclude = ["build", "dist", ".venv"]
+
+[tool.ruff.lint]
+select = [
+  "E", "F", "W",   # pycodestyle / pyflakes
+  "I",             # isort
+  "B",             # flake8-bugbear
+  "UP",            # pyupgrade
+  "SIM",           # flake8-simplify
+  "C4",            # flake8-comprehensions
+  "RUF",           # ruff-specific
+]
+ignore = [
+  "E501",          # line length handled by formatter
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_unreachable = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+show_error_codes = true
+exclude = ["build/", "dist/", ".venv/"]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["tests"]
+addopts = [
+  "-ra",
+  "--strict-markers",
+  "--strict-config",
+  "--cov=src",
+  "--cov-report=term-missing",
+  "--cov-report=xml",
+]
+
+[tool.coverage.run]
+branch = true
+source = ["src"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = false
