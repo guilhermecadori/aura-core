@@ -1,7 +1,7 @@
-# NNNN — Short Title
+# 0NNN — Short Title
 
-**Status:** Proposed | Accepted | Superseded by [NNNN](./NNNN-title.md)
-**Date:** YYYY-MM
+**Status:** Proposed | Accepted | Superseded by [0NNN](./0NNN-title.md)
+**Date:** YYYY-MM-DD
 
 ## Context
 
