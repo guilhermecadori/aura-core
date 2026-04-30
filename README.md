@@ -124,11 +124,35 @@ aura-core/
 ├── evals/
 │   ├── golden/           Reference Q&A set
 │   └── promptfoo/        Eval configurations
-└── docs/
-    ├── architecture.md   Full design document
-    ├── adr/              Architecture Decision Records
-    └── benchmarks.md     Performance report (Phase 5)
+├── adr/                  Architecture Decision Records
+├── aura-architecture.md  Full design document
+└── docs/                 Additional docs (benchmarks in Phase 5)
 ```
+
+---
+
+## Development Setup
+
+```bash
+# Node deps (commitlint)
+npm install
+
+# Python venv + quality tools
+python -m venv .venv
+source .venv/bin/activate            # Windows: .venv\Scripts\activate
+pip install ruff mypy pytest pytest-cov
+```
+
+Run linters and tests locally:
+
+```bash
+ruff check .
+ruff format --check .
+mypy src/        # once src/ exists
+pytest           # once tests/ exists
+```
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for commit conventions, branch workflow, and full code quality expectations.
 
 ---
 
