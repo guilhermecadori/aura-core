@@ -78,9 +78,9 @@ Notable exclusions with rationale in [`adr/`](./adr)
 Phases are sequential. Each has an explicit stop criterion. Target cadence is part-time development; calendar estimates are deliberately conservative.
 
 - [ ] **Phase 0 — Foundation** *(3 mo)*
-      Background study: async Python, streaming UI, Kafka, vector DBs, k8s literacy, AWS/Terraform, OTel.
+      Background study: Python, DL, LLM, RAG and AI Agents.
 - [ ] **Phase 1 — RAG Foundation** *(2 mo)*
-      Corpus ingestion, Qdrant hybrid retrieval, eval harness (~200 golden questions), MLflow tracking.
+      Corpus ingestion, Qdrant hybrid retrieval, eval harness (~200 golden questions), vector DBs, MLflow tracking.
 - [ ] **Phase 2 — LLM Serving + ReAct Agent** *(2 mo)*
       vLLM on Modal, LangGraph ReAct loop, tool use, semantic cache, Langfuse traces.
 - [ ] **Phase 3 — Product Surface** *(2.5 mo)*
@@ -90,7 +90,7 @@ Phases are sequential. Each has an explicit stop criterion. Target cadence is pa
 - [ ] **Phase 5 — Observability & Production Ops** *(2 mo)*
       OTel end-to-end, public Grafana dashboard, k6 load suite, EKS deployment with KEDA, benchmark report.
       → **Primary checkpoint.** Main development phase complete here.
-- [ ] **Phase 6 — Analytics & Training Data** *(1 mo)* — Databricks notebooks, DuckDB comparisons.
+- [ ] **Phase 6 — Analytics & Training Data** *(1 mo)* — Databricks notebooks, DuckDB comparisons *(TBD)*
 - [ ] **Phase 7 — Voice** *(1.5 mo)* — Whisper + Piper, hands-free mode, bilingual.
 - [ ] **Phase 8 — Edge Runtime** *(2 mo)* — Raspberry Pi 5 offline mode, cloud sync, kiosk boot.
 - [ ] **Phase 9 — Video** *(0.75 mo)* — In-vehicle demo, ReAct HUD, offline moment.
